@@ -105,20 +105,20 @@ Tool and control-logic tests may use fixed responses offline. Evaluation of the 
 
 ## Deadline timeline
 
-The project has **two required submissions through the course learning-management system (LMS): the first version on November 8 and the final version on December 12**. The first version is required but ungraded; you will receive feedback to guide your revisions. The final version and the December 4 in-class presentation determine your project grade. Progress checks between submissions provide informal feedback during class and require no separate upload.
+The project has **two required submissions through the course learning-management system (LMS): the first version on November 8 and the final version on December 12**. The first version is required but ungraded; you will receive feedback to guide your revisions. The final version and your **recorded video presentation, shown in class on December 4**, determine your project grade. Progress checks between submissions provide informal feedback during class and require no separate upload.
 
 | Date or period | Deliverable |
 |---|---|
 | **November 8, 2026** | **First version:** a working application and a plan of at most one page identifying the title, intended user, task and scope, tools, baseline, and evaluation metrics. **Provide supporting materials separately:** at least 10 cases with PASS/FAIL rules, initial evaluation results and a baseline comparison, an architecture block diagram, setup and evaluation instructions, analysis of two failed cases, and an improvement plan. Save a Git tag marking this version. |
 | **November 9–December 3, 2026** | **Progress checks and refinement:** demonstrate saved progress, recovery after interruption, memory across runs, and approval behavior. Prepare draft final results and revise the threat model to describe possible attacks, defenses, and remaining risks. Include findings from the class security exercise. |
-| **December 4, 2026 — in class** | **Required recorded presentation:** have your three-minute unlisted YouTube video ready to show in class. Add its link to your project README before class; see the video requirements below. |
+| **December 4, 2026 — in class** | **Recorded video presentations:** we will show your prerecorded three-minute videos in class. Upload yours to YouTube as Unlisted and add the link to your project README before class. |
 | **December 12, 2026** | **Final version:** repository another person can run, updated architecture block diagram, at least 20 evaluation cases, evaluation code and saved results, metric comparisons including `pass@k` and `pass^k`, example traces, presentation materials and YouTube video link, and a report of at most four pages excluding references. |
 
 Submit both versions through the LMS. Include planning work and progress-check results in these submissions as appropriate.
 
-## Recorded presentation
+## Presentation format: recorded video
 
-Record a **three-minute presentation (maximum three minutes)** and upload it to YouTube with visibility set to **Unlisted**. Add the link to your project README before the December 4 class so it is ready to show. Include the link in your December 12 final LMS submission as well; no separate LMS upload is required for the presentation.
+**Your presentation must be a prerecorded video, with a maximum length of three minutes. The video is your presentation; no separate live presentation is required.** Upload it to YouTube with visibility set to **Unlisted** and add the link to your project README before the December 4 class, when we will show the videos. Include the link in your December 12 final LMS submission as well; no separate LMS upload is required for the presentation.
 
 Suggested structure:
 
@@ -131,14 +131,14 @@ Use readable screen recordings and clear narration. Check that the link plays in
 
 ## Grading and submission
 
-The first version receives feedback and is **not graded**. The **final project, including the presentation, counts for 60% of the course grade**; programming assignments account for the remaining 40%. The final project is graded on:
+The first version receives feedback and is **not graded**. The **final project, including the recorded video presentation, counts for 60% of the course grade**; programming assignments account for the remaining 40%. The final project is graded on:
 
 - **30%:** whether the application works and its design fits the task.
 - **30%:** evaluation quality and explanation of results.
 - **20%:** reliability, human control, and security.
 - **20%:** whether another person can run the work and understand your explanation.
 
-The presentation contributes to these criteria as part of the final-project grade.
+The recorded video presentation contributes to these criteria as part of the final-project grade.
 
 Evaluation is graded on sound methods, results others can reproduce, and honest interpretation. You can earn full credit even if tasks fail or your change does not improve results.
 
