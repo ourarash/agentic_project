@@ -10,18 +10,20 @@ Choose a small problem you can finish within the course workload. A command-line
 
 Create your own repository using Python 3.11 or newer and Git. Document package installation, configuration, and commands to run the application, tests, and evaluation. Keep passwords and API keys out of Git. Provide an `.env.example` with placeholder values for any required environment variables.
 
-## Choose a subject
+## Choose a subject and explore examples
 
 Choose an option below or propose your own. Explain who will use it, what task it will complete, and why the agent needs to choose actions as it works.
 
-| Subject | What the application could do | How you could check success |
-|---|---|---|
-| Research assistant | Investigate a narrow question, search sources, and write a brief with citations. | Sources support the claims; citations are accurate; missing evidence is identified. |
-| Coding assistant | Investigate an issue in a small repository, propose a patch, and run tests. | Relevant tests pass; changes address the issue without breaking existing behavior. |
-| Data analysis assistant | Inspect a public dataset, choose analysis steps, run code, and explain results. | Calculations are correct; another person can repeat the analysis; missing data is handled. |
-| Course or lab assistant | Read documentation, diagnose a setup problem, and guide troubleshooting. | Diagnosis and steps are useful; the agent asks for help when it lacks evidence. |
-| Service request assistant | Read policies, ask for missing information, and update a simulated ticket after approval. | Decisions and updates follow policy; approval is required before an update. |
-| Trip or event planner | Gather user requirements, compare options, and revise an itinerary. | Schedules are feasible, costs are correct, and the plan meets user requirements. |
+The linked examples provide implementation ideas. Choose a smaller scope for your project. Some use frameworks beyond those taught in class; you can apply their ideas using the course tools. You must still implement and evaluate the course requirements.
+
+| Subject | What the application could do | How you could check success | Example to explore |
+|---|---|---|---|
+| Research assistant | Investigate a narrow question, search sources, and write a brief with citations. | Sources support the claims; citations are accurate; missing evidence is identified. | [LangChain: Deep research agent](https://docs.langchain.com/oss/python/deepagents/deep-research) |
+| Coding assistant | Investigate an issue in a small repository, propose a patch, and run tests. | Relevant tests pass; changes address the issue without breaking existing behavior. | [mini-SWE-agent](https://github.com/SWE-agent/mini-swe-agent) |
+| Data analysis assistant | Inspect a public dataset, choose analysis steps, run code, and explain results. | Calculations are correct; another person can repeat the analysis; missing data is handled. | [LangChain: Data analysis agent](https://docs.langchain.com/oss/python/deepagents/data-analysis) |
+| Course or lab assistant | Read documentation, diagnose a setup problem, and guide troubleshooting. | Diagnosis and steps are useful; the agent asks for help when it lacks evidence. | [Hugging Face: Agentic RAG](https://huggingface.co/docs/smolagents/examples/rag), adaptable to course materials |
+| Service request assistant | Read policies, ask for missing information, and update a simulated ticket after approval. | Decisions and updates follow policy; approval is required before an update. | [LangChain: Customer support with handoffs](https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs) |
+| Trip or event planner | Gather user requirements, compare options, and revise an itinerary. | Schedules are feasible, costs are correct, and the plan meets user requirements. | [TravelPlanner](https://github.com/OSU-NLP-Group/TravelPlanner), including evaluation code |
 
 Use public or made-up data. You may simulate external services and run actions in a local test environment.
 
@@ -146,18 +148,7 @@ Include the syllabus verification note in three bullets: models used; how you te
 
 For both required submissions, push your work and submit the repository URL, exact commit hash, and materials listed in the timeline through the LMS. Check that the instructor can access everything.
 
-## Project examples and your contribution
-
-These examples provide implementation ideas. Choose a smaller scope for your project. Some use frameworks beyond those taught in class; you can apply their ideas using the course tools. You must still implement and evaluate the course requirements.
-
-| Project topic | Example | What you can learn |
-|---|---|---|
-| Research assistant | [LangChain: Build a deep research agent](https://docs.langchain.com/oss/python/deepagents/deep-research) | Search in multiple steps, follow new findings, and write a report with citations. |
-| Coding assistant | [mini-SWE-agent](https://github.com/SWE-agent/mini-swe-agent) | Study a small coding-agent loop that runs commands and uses their results. |
-| Data analysis assistant | [LangChain: Build a data analysis agent](https://docs.langchain.com/oss/python/deepagents/data-analysis) | Analyze a CSV file, execute analysis steps, and generate charts. |
-| Course or lab assistant | [Hugging Face: Agentic RAG](https://huggingface.co/docs/smolagents/examples/rag) | Search technical documentation and refine searches; adapt the approach to course materials. |
-| Service request assistant | [LangChain: Customer support with handoffs](https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs) | Collect required information and change available actions as a request progresses. |
-| Trip or event planner | [TravelPlanner](https://github.com/OSU-NLP-Group/TravelPlanner) | Study agent implementations and evaluation code for checking travel plans against constraints. |
+## Explain your contribution
 
 **Clearly explain how your project differs from the samples.** In your first-version README and final report, include a short section titled **“Comparison with sample projects”** that answers:
 
