@@ -89,9 +89,30 @@ Evaluation is graded on sound methods, results others can reproduce, and honest 
 
 Another person must be able to run a fresh copy of your repository using your instructions and sample data. Follow the syllabus AI-use and data policies. Be able to explain and modify your code.
 
-Include the syllabus verification note in three bullets: models used; how you tested the work; and one known failure or limitation (or “none found”). In the final report, identify what you built and any reused code or components.
+Include the syllabus verification note in three bullets: models used; how you tested the work; and one known failure or limitation (or “none found”). Include the comparison with sample projects described below in your first-version README and final report.
 
 Push each graded submission and submit its repository URL, exact commit hash, report, and results through the LMS. Check that the instructor can access everything. Submit subject selection and feedback checkpoints through the LMS as well.
+
+## Project examples and your contribution
+
+These examples provide implementation ideas. Choose a smaller scope for your project. Some use frameworks beyond those taught in class; you can apply their ideas using the course tools. You must still implement and evaluate the course requirements.
+
+| Project topic | Example | What you can learn |
+|---|---|---|
+| Research assistant | [LangChain: Build a deep research agent](https://docs.langchain.com/oss/python/deepagents/deep-research) | Search in multiple steps, follow new findings, and write a report with citations. |
+| Coding assistant | [mini-SWE-agent](https://github.com/SWE-agent/mini-swe-agent) | Study a small coding-agent loop that runs commands and uses their results. |
+| Data analysis assistant | [LangChain: Build a data analysis agent](https://docs.langchain.com/oss/python/deepagents/data-analysis) | Analyze a CSV file, execute analysis steps, and generate charts. |
+| Course or lab assistant | [Hugging Face: Agentic RAG](https://huggingface.co/docs/smolagents/examples/rag) | Search technical documentation and refine searches; adapt the approach to course materials. |
+| Service request assistant | [LangChain: Customer support with handoffs](https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs) | Collect required information and change available actions as a request progresses. |
+| Trip or event planner | [TravelPlanner](https://github.com/OSU-NLP-Group/TravelPlanner) | Study agent implementations and evaluation code for checking travel plans against constraints. |
+
+**Clearly explain how your project differs from the samples.** In your first-version README and final report, include a short section titled **“Comparison with sample projects”** that answers:
+
+- **What did you use?** Link to the samples that informed your work, including sources outside this list. Identify reused code or components, and distinguish code reuse from ideas you studied.
+- **What is different?** Describe specific changes to the task, data, tools, workflow, approval rules, recovery, or evaluation. State which parts still follow the sample.
+- **What did you contribute and test?** Point to the files or functions you added or changed. Explain how your test cases and results demonstrate the behavior you implemented.
+
+Running a sample unchanged or changing only its name or interface is insufficient. Your contribution must implement and test behavior relevant to your chosen task. If no sample fits your project, explain your approach and identify any other starting code you used.
 
 ## References and useful resources
 
