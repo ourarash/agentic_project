@@ -60,30 +60,27 @@ Tool and control-logic tests may use fixed responses offline. Evaluation of the 
 
 ## Deadline timeline
 
-**Proposed schedule:** dates and times will be confirmed in the course learning-management system (LMS). Week 6 subject selection replaces the syllabus's Week 5 project-plan deadline in this draft.
+The project has **two required submissions through the course learning-management system (LMS): the first version on November 8 and the final version on December 12**. The first version is required but ungraded; you will receive feedback to guide your revisions. The final version and the December 4 in-class presentation determine your project grade. Progress checks between submissions provide informal feedback during class and require no separate upload.
 
-| Deadline | Deliverable |
+| Date or period | Deliverable |
 |---|---|
-| **End of Week 6** | **Subject selection only:** a title and 2–3 sentences identifying the user and task. No code, design, or evaluation plan required. |
-| **End of Week 7** | A plan of at most one page: task and scope, tools, simpler approach for comparison, and measurements. Attach 10 test cases with success criteria. |
-| **End of Week 8** | **First version:** working application, system diagram, setup and evaluation instructions, baseline comparison, analysis of two failures, and improvement plan. Save a Git tag marking this version. |
-| **End of Week 11** | Progress check: demonstrate saved progress, recovery after interruption, memory across runs, and approval behavior. |
-| **End of Week 14** | Draft final results and revised threat model: the possible attacks, defenses, and remaining risks. Include findings from the class security exercise. |
-| **Week 15 class** | Present the application, system design, measured results, costs, failures, and limitations. Include a short live or recorded demonstration. |
-| **Final-period deadline** | **Final version:** repository another person can run, evaluation cases and code, saved results, example traces, presentation materials, and a report of at most four pages excluding references. |
+| **November 8, 2026** | **First version:** a working application and a plan of at most one page identifying the title, intended user, task and scope, tools, baseline, and evaluation metrics. **Provide supporting materials separately:** at least 10 test cases with success criteria, a system diagram, setup and evaluation instructions, a baseline comparison, analysis of two failed cases, and an improvement plan. Save a Git tag marking this version. |
+| **November 9–December 3, 2026** | **Progress checks and refinement:** demonstrate saved progress, recovery after interruption, memory across runs, and approval behavior. Prepare draft final results and revise the threat model to describe possible attacks, defenses, and remaining risks. Include findings from the class security exercise. |
+| **December 4, 2026 — in class** | **Required presentation:** present the application, system design, measured results, costs, failures, and limitations. Include a short live or recorded demonstration. |
+| **December 12, 2026** | **Final version:** repository another person can run, evaluation cases and code, saved results, example traces, presentation materials, and a report of at most four pages excluding references. |
 
-Planning and progress checkpoints receive feedback and are not separately graded. Submit graded work through the LMS.
+Submit both versions through the LMS. Include planning work and progress-check results in these submissions as appropriate.
 
 ## Grading and submission
 
-The first and final versions each count for **30% of the course grade**. Each submission is graded on:
+The first version receives feedback and is **not graded**. The **final project, including the presentation, counts for 60% of the course grade**; programming assignments account for the remaining 40%. The final project is graded on:
 
 - **30%:** whether the application works and its design fits the task.
 - **30%:** evaluation quality and explanation of results.
 - **20%:** reliability, human control, and security.
 - **20%:** whether another person can run the work and understand your explanation.
 
-Grading reflects the requirements taught by that stage. The final-version grade includes the presentation.
+The presentation contributes to these criteria as part of the final-project grade.
 
 Evaluation is graded on sound methods, results others can reproduce, and honest interpretation. You can earn full credit even if tasks fail or your change does not improve results.
 
@@ -91,7 +88,7 @@ Another person must be able to run a fresh copy of your repository using your in
 
 Include the syllabus verification note in three bullets: models used; how you tested the work; and one known failure or limitation (or “none found”). Include the comparison with sample projects described below in your first-version README and final report.
 
-Push each graded submission and submit its repository URL, exact commit hash, report, and results through the LMS. Check that the instructor can access everything. Submit subject selection and feedback checkpoints through the LMS as well.
+For both required submissions, push your work and submit the repository URL, exact commit hash, and materials listed in the timeline through the LMS. Check that the instructor can access everything.
 
 ## Project examples and your contribution
 
