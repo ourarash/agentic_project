@@ -44,6 +44,49 @@ Your **final version** must also:
 
 Use the course tools or check with the instructor before choosing alternatives.
 
+## Architecture block diagram
+
+Include a block diagram of your system architecture with the first version. Show the user interface, agent and model, tools and MCP connections, data sources, saved state or memory, and human approval points, as applicable. Label arrows to explain how information and actions move between components. Update the diagram for the final submission so it matches your implementation.
+
+Here is an example for a service-request assistant. Draw the components your own application actually uses.
+
+```mermaid
+flowchart TD
+    User["User"] <--> UI["Command-line or web interface"]
+    UI <--> Agent["Agent loop<br/>Chooses next steps and enforces limits"]
+
+    Agent <-->|Model requests and responses| Model["Language model"]
+    Agent <-->|Save and restore progress| State[("Saved state and memory")]
+
+    Agent -->|Read request| Read["MCP tool: search policies and tickets"]
+    Read <-->|Read data| Data[("Policies and ticket database")]
+    Read -->|Search results| Agent
+
+    Agent -->|Proposed ticket change| Approval{"Human approval"}
+    User -->|Approve or deny| Approval
+    Approval -->|Approved| Write["MCP tool: update ticket"]
+    Approval -->|Denied: revise or stop| Agent
+    Write -->|Apply approved change| Data
+    Write -->|Action result| Agent
+
+    Agent -->|Record calls, results, cost, and time| Logs[("Execution traces")]
+    Logs --> Evaluation["Evaluation<br/>Success, failures, cost, and time"]
+
+    classDef interface fill:#dbeafe,stroke:#2563eb,color:#172554;
+    classDef agent fill:#ede9fe,stroke:#7c3aed,color:#3b0764;
+    classDef tool fill:#cffafe,stroke:#0891b2,color:#164e63;
+    classDef storage fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    classDef approval fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef evaluation fill:#fce7f3,stroke:#db2777,color:#831843;
+
+    class User,UI interface;
+    class Agent,Model agent;
+    class Read,Write tool;
+    class State,Data,Logs storage;
+    class Approval approval;
+    class Evaluation evaluation;
+```
+
 ## Required evaluation
 
 **Evaluation is required.** Test whether the complete application takes appropriate actions and produces correct results.
@@ -64,12 +107,25 @@ The project has **two required submissions through the course learning-managemen
 
 | Date or period | Deliverable |
 |---|---|
-| **November 8, 2026** | **First version:** a working application and a plan of at most one page identifying the title, intended user, task and scope, tools, baseline, and evaluation metrics. **Provide supporting materials separately:** at least 10 test cases with success criteria, a system diagram, setup and evaluation instructions, a baseline comparison, analysis of two failed cases, and an improvement plan. Save a Git tag marking this version. |
+| **November 8, 2026** | **First version:** a working application and a plan of at most one page identifying the title, intended user, task and scope, tools, baseline, and evaluation metrics. **Provide supporting materials separately:** at least 10 test cases with success criteria, an architecture block diagram, setup and evaluation instructions, a baseline comparison, analysis of two failed cases, and an improvement plan. Save a Git tag marking this version. |
 | **November 9–December 3, 2026** | **Progress checks and refinement:** demonstrate saved progress, recovery after interruption, memory across runs, and approval behavior. Prepare draft final results and revise the threat model to describe possible attacks, defenses, and remaining risks. Include findings from the class security exercise. |
-| **December 4, 2026 — in class** | **Required presentation:** present the application, system design, measured results, costs, failures, and limitations. Include a short live or recorded demonstration. |
-| **December 12, 2026** | **Final version:** repository another person can run, evaluation cases and code, saved results, example traces, presentation materials, and a report of at most four pages excluding references. |
+| **December 4, 2026 — in class** | **Required recorded presentation:** have your three-minute unlisted YouTube video ready to show in class. Add its link to your project README before class; see the video requirements below. |
+| **December 12, 2026** | **Final version:** repository another person can run, updated architecture block diagram, evaluation cases and code, saved results, example traces, presentation materials and YouTube video link, and a report of at most four pages excluding references. |
 
 Submit both versions through the LMS. Include planning work and progress-check results in these submissions as appropriate.
+
+## Recorded presentation
+
+Record a **three-minute presentation (maximum three minutes)** and upload it to YouTube with visibility set to **Unlisted**. Add the link to your project README before the December 4 class so it is ready to show. Include the link in your December 12 final LMS submission as well; no separate LMS upload is required for the presentation.
+
+Suggested structure:
+
+- **0:00–0:30:** identify the user and task.
+- **0:30–1:00:** explain your architecture block diagram.
+- **1:00–2:00:** demonstrate the application completing a task.
+- **2:00–3:00:** show evaluation results against the baseline, cost and time, one failure or limitation, and your contribution beyond any samples you used.
+
+Use readable screen recordings and clear narration. Check that the link plays in a signed-out or private browser window, and keep the video available through grading. See [YouTube's visibility instructions](https://support.google.com/youtube/answer/157177) for setting a video to Unlisted.
 
 ## Grading and submission
 
