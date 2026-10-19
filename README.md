@@ -70,7 +70,7 @@ flowchart TD
     Write -->|Action result| Agent
 
     Agent -->|Record calls, results, cost, and time| Logs[("Execution traces")]
-    Logs --> Evaluation["Evaluation<br/>Success, failures, cost, and time"]
+    Logs --> Evaluation["Evaluation<br/>pass@k, pass^k, cost, and time"]
 
     classDef interface fill:#dbeafe,stroke:#2563eb,color:#172554;
     classDef agent fill:#ede9fe,stroke:#7c3aed,color:#3b0764;
@@ -91,13 +91,35 @@ flowchart TD
 
 **Evaluation is required.** Test whether the complete application takes appropriate actions and produces correct results.
 
-1. **Define tasks and success criteria.** Submit at least 10 cases for the first version and 20 for the final version. Each needs an input, starting data and state, and an expected outcome or scoring guide. Include ordinary tasks, unclear requests, missing information, and tool failures. Final cases must also test denied approval, interruption and recovery, and malicious instructions in outside content.
+1. **Define tasks and success criteria.** Submit at least 10 cases for the first version and 20 for the final version. Each needs an input, starting data and state, and an expected outcome or scoring guide. Set a binary PASS/FAIL rule before running each case, including a score threshold if needed. Include ordinary tasks, unclear requests, missing information, and tool failures. Final cases must also test denied approval, interruption and recovery, and malicious instructions in outside content. A required approval or safety check being bypassed makes that trial FAIL even if the final answer is correct.
 2. **Compare with a simpler approach.** Your baseline could be a single model call or fixed sequence of steps. Explain its access to information and tools. Record model settings and step or spending limits so readers can assess the comparison.
-3. **Measure results and effort.** Report the percentage of successful tasks, relevant quality scores, approval and recovery results, cost per task, and elapsed time. Automate checks where possible. If a model scores outputs, submit its instructions and scoring guide, manually check at least five judgments, and report disagreements.
-4. **Check improvement on unfamiliar tasks.** Reserve at least five final cases that you do not use to adjust the application. Finalize the test set before comparing the baseline, first version, and final version; run all three on the same cases. Run five final-version cases three times each and report how results vary.
+3. **Measure results and effort.** Report the repeated-trial metrics below, relevant quality scores, approval and recovery results, cost, and elapsed time. Automate checks where possible. If a model scores outputs, submit its instructions and scoring guide, manually check at least five judgments, and report disagreements.
+4. **Check improvement on unfamiliar tasks.** Reserve at least five final cases that you do not use to adjust the application. Finalize the test set before comparing the baseline, first version, and final version. Evaluate all three on the same cases, with the same graders, starting conditions, and trial budgets.
 5. **Explain failures.** Use traces to analyze at least two failed cases. Show results before and after your chosen change, including any tasks that became worse or stayed the same.
 
-Submit cases, evaluation code, saved results, and a command to repeat the evaluation. Reset state between cases unless testing memory across runs. Count failures and timeouts. Save or version source data where possible, identify required live services, and estimate costs before large runs.
+### Repeated-trial metrics from Session 6
+
+For the **first version**, run each of the 10 cases at least once for the application and baseline; report the observed success rate as an initial `pass@1` estimate. For the **final evaluation**, run each of the 20 or more cases **five times per system**: baseline, first version, and final version. With 20 cases, this is **100 complete trials per system, 300 total**. Keep tasks small, set a cost limit per trial, and estimate the full budget before running them.
+
+A trial is one complete application run, including any retries within that run. Start each trial with a fresh conversation and the same initial data, saved state, and memory. Keep model settings, tools, and limits fixed for each system. Trials must not learn from one another or reuse cached model responses. For a memory test, define the sequence of interactions as one trial and reset before repeating it.
+
+For each case, let `n = 5` be the number of trials and `c` the number that PASS. Let `C(a, k)` mean the number of ways to choose k items from a items; it is zero when `a < k`.
+
+| Required metric | What it measures | Estimate for one case |
+|---|---|---|
+| `pass@1` (also `pass^1`) | Chance that one fresh attempt succeeds. | `c / n` |
+| `pass@2` | Chance that at least one of two fresh attempts succeeds. | `1 - C(n-c, 2) / C(n, 2)` |
+| `pass^2` | Chance that both fresh attempts succeed. | `C(c, 2) / C(n, 2)` |
+
+Calculate each metric **per case, then average equally across cases**. For other values of k, replace 2 with k in the formulas; report only `k <= n`. Additional k values are optional. Follow the saved-trial estimators from Session 6 rather than raising an overall success rate to a power. For example, four passes in five trials give `pass@1 = 80%`, estimated `pass@2 = 100%`, and estimated `pass^2 = 60%` for that case. These are estimates from a small sample, not guarantees.
+
+In the final report, include:
+
+- A comparison table for all three systems: case/trial counts, `pass@1`, `pass@2`, `pass^2`, mean cost and time per trial, and cost per successful trial. Compute cost per success as total cost, including failures, divided by successful trials; report N/A if there are none.
+- Results by task category, including approval, recovery, and security failures, so an overall average does not hide a serious weakness. Explain which metric matters most for your user. `pass@2` does not show that the application can identify the successful attempt or safely retry an action.
+- An approximate **95% confidence interval for the final version's `pass^2`**, using the Session 6 bootstrap method: sample whole cases with replacement, keep each case's five trials together, recalculate the mean 10,000 times, and take the 2.5th and 97.5th percentiles. Save the random seed. This needs no additional model runs; discuss the limits of a small task set.
+
+Submit cases, evaluation code, saved results, and a command to repeat the evaluation. Save one row per trial with the system version, case ID/category, trial ID, PASS/FAIL and reason, cost, elapsed time, and trace location. Count failures and timeouts. Save or version source data where possible and identify required live services.
 
 Tool and control-logic tests may use fixed responses offline. Evaluation of the complete application must also use an actual model, hosted or local. Identify the model and label simulated results. Report tokens processed and elapsed time for local models, even without an API charge.
 
@@ -107,10 +129,10 @@ The project has **two required submissions through the course learning-managemen
 
 | Date or period | Deliverable |
 |---|---|
-| **November 8, 2026** | **First version:** a working application and a plan of at most one page identifying the title, intended user, task and scope, tools, baseline, and evaluation metrics. **Provide supporting materials separately:** at least 10 test cases with success criteria, an architecture block diagram, setup and evaluation instructions, a baseline comparison, analysis of two failed cases, and an improvement plan. Save a Git tag marking this version. |
+| **November 8, 2026** | **First version:** a working application and a plan of at most one page identifying the title, intended user, task and scope, tools, baseline, and evaluation metrics. **Provide supporting materials separately:** at least 10 cases with PASS/FAIL rules, initial `pass@1` results for the application and baseline, an architecture block diagram, setup and evaluation instructions, analysis of two failed cases, and an improvement plan. Save a Git tag marking this version. |
 | **November 9–December 3, 2026** | **Progress checks and refinement:** demonstrate saved progress, recovery after interruption, memory across runs, and approval behavior. Prepare draft final results and revise the threat model to describe possible attacks, defenses, and remaining risks. Include findings from the class security exercise. |
 | **December 4, 2026 — in class** | **Required recorded presentation:** have your three-minute unlisted YouTube video ready to show in class. Add its link to your project README before class; see the video requirements below. |
-| **December 12, 2026** | **Final version:** repository another person can run, updated architecture block diagram, evaluation cases and code, saved results, example traces, presentation materials and YouTube video link, and a report of at most four pages excluding references. |
+| **December 12, 2026** | **Final version:** repository another person can run, updated architecture block diagram, at least 20 evaluation cases with five trials per case per system, evaluation code and saved results, required metric comparison and confidence interval, example traces, presentation materials and YouTube video link, and a report of at most four pages excluding references. |
 
 Submit both versions through the LMS. Include planning work and progress-check results in these submissions as appropriate.
 
@@ -123,7 +145,7 @@ Suggested structure:
 - **0:00–0:30:** identify the user and task.
 - **0:30–1:00:** explain your architecture block diagram.
 - **1:00–2:00:** demonstrate the application completing a task.
-- **2:00–3:00:** show evaluation results against the baseline, cost and time, one failure or limitation, and your contribution beyond any samples you used.
+- **2:00–3:00:** show `pass@1`, `pass@2`, and `pass^2` against the baseline, cost and time, one failure or limitation, and your contribution beyond any samples you used.
 
 Use readable screen recordings and clear narration. Check that the link plays in a signed-out or private browser window, and keep the video available through grading. See [YouTube's visibility instructions](https://support.google.com/youtube/answer/157177) for setting a video to Unlisted.
 
@@ -179,4 +201,6 @@ These resources are optional. Choose those that help with your subject. The indu
 - [LangGraph Overview](https://docs.langchain.com/oss/python/langgraph/overview): managing state, saving progress, and pausing for human input.
 - [MCP Architecture](https://modelcontextprotocol.io/docs/learn/architecture): how hosts, clients, servers, tools, and resources fit together.
 - [Evaluate Agent Workflows — OpenAI](https://developers.openai.com/api/docs/guides/agent-evals): guidance and tools for evaluations that can be repeated.
+- [Evaluating Large Language Models Trained on Code — Chen et al.](https://arxiv.org/abs/2107.03374): the saved-trial estimator for `pass@k` used in Session 6.
+- [τ-bench — Yao et al.](https://arxiv.org/abs/2406.12045): evaluating tool-using agents and repeated success with `pass^k`.
 - [Reflexion — Shinn et al.](https://arxiv.org/abs/2303.11366): using feedback and saved reflections to improve later attempts without training model weights.
