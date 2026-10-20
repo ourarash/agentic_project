@@ -1,6 +1,6 @@
 # EE 599: Agentic Application Project
 
-**Draft · Fall 2026 · Individual project; no teams**
+**Fall 2026 · Individual project; no teams**
 
 Build an AI-agent application for a specific user and task. The agent must use tools, choose actions based on what it finds, and produce a result the user can check. Measure how well it works, make one change based on the results, and measure it again.
 
